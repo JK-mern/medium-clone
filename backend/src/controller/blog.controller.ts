@@ -2,8 +2,6 @@ import { Context } from "hono";
 import { prismaConnection } from "../../utils/prismaClient";
 
 export const getBlog = async (c: Context) => {
-  console.log(c.req.param("id"));
-
   try {
   } catch (error) {}
   return c.json({ success: true, message: "Blog is this " });
@@ -12,6 +10,8 @@ export const getBlog = async (c: Context) => {
 export const getAllBlogs = async (c: Context) => {
   const prisma = prismaConnection(c);
   try {
+    const result = await prisma.post.findMany()
+    return c.json({status :true, posts : result})
   } catch (error) {
     return c.json({ status: false, msg: "internal Server error" }, 500);
   }
