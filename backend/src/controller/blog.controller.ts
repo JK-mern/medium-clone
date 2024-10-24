@@ -67,6 +67,7 @@ export const updateBlog = async (c: Context) => {
     const user = await prisma.user.findUnique({
       where: {
         id: userId,
+      
       },
     });
 
@@ -76,7 +77,8 @@ export const updateBlog = async (c: Context) => {
 
     const update = await prisma.post.update({
       where : {
-        id : id
+        id : id,
+        authorId : user.id
       }, 
       data : {
         title : body.title || undefined,
