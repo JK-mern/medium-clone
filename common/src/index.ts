@@ -22,8 +22,8 @@ export type signinInput = z.infer<typeof signinInput>
 
 
 export const createPost = z.object({
-    title : z.string(),
-    content : z.string()
+    title : z.string( {required_error: "Title is required"}),
+    content : z.string({required_error : "Write Some Content"})
 })
 
 export type createPost = z.infer<typeof createPost>
