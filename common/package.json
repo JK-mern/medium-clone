@@ -1,0 +1,15 @@
+{
+  "name": "@jayakrishnan_s/medium-common-app",
+  "version": "1.0.0",
+  "description": "common utilities for my medium app",
+  "main": "dist/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Jayakrishnan S",
+  "license": "ISC",
+  "dependencies": {
+    "zod": "^3.23.8"
+  }
+}
