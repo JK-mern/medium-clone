@@ -1,6 +1,6 @@
 {
   "name": "@jayakrishnan_s/medium-common-app",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "common utilities for my medium app",
   "main": "dist/index.js",
   "scripts": {

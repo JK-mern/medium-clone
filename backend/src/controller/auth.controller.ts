@@ -2,11 +2,16 @@ import { Context } from "hono";
 import { Prisma } from "@prisma/client";
 import { prismaConnection } from "../../utils/prismaClient";
 import { jwt, sign } from "hono/jwt";
+import { signinInput, signupInput } from "@jayakrishnan_s/medium-common-app";
 
 export const signup = async (c: Context) => {
   const body = await c.req.json();
   const prisma = prismaConnection(c);
   try {
+    const { success, error } = signupInput.safeParse(body);
+    if (!success) {
+      return c.json({ status: false, msg: error.errors[0].message });
+    }
     const user = await prisma.user.findUnique({
       where: {
         email: body.email,
@@ -30,7 +35,6 @@ export const signup = async (c: Context) => {
       return c.json({ status: true, jwt: token });
     }
   } catch (error) {
-    console.log(error);
     c.status(403);
     return c.json({ status: false });
   }
@@ -40,6 +44,11 @@ export const signin = async (c: Context) => {
   const body = await c.req.json();
   const prisma = prismaConnection(c);
   try {
+    const {success,error} = signinInput.safeParse(body);
+    if(!success)
+    {
+      return c.json({status : false, msg : error.errors[0].message})
+    }
     const user = await prisma.user.findUnique({
       where: {
         email: body.email,
@@ -59,8 +68,7 @@ export const signin = async (c: Context) => {
     c.status(201);
     return c.json({ status: true, jwt: token });
   } catch (error) {
-    c.status(500)
-    console.log(error)
-    return c.json({status:false, msg:"internal server error"})
+    c.status(500);
+    return c.json({ status: false, msg: "internal server error" });
   }
 };

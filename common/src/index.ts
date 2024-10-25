@@ -2,7 +2,7 @@ import { string, z } from "zod";
 
 
 export const signupInput = z.object({
-  email: z.string().email({ message: "invalid email Address" }).toLowerCase(),
+  email: z.string().email({ message: "invalid email Address" }),
   name: z.string({
     required_error: "Name is required",
   }),

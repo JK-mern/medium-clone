@@ -1,5 +1,6 @@
 import { Context } from "hono";
 import { prismaConnection } from "../../utils/prismaClient";
+import { createPost, updatePost } from "@jayakrishnan_s/medium-common-app";
 
 export const getBlog = async (c: Context) => {
   const prisma = prismaConnection(c);
@@ -32,6 +33,10 @@ export const createNewBlog = async (c: Context) => {
   const body = await c.req.json();
   const prisma = prismaConnection(c);
   try {
+    const { success, error } = createPost.safeParse(body);
+    if (!success) {
+      return c.json({ status: false, msg: error.errors[0].message });
+    }
     const user = await prisma.user.findUnique({
       where: {
         id: c.get("userId"),
@@ -64,10 +69,13 @@ export const updateBlog = async (c: Context) => {
   const prisma = prismaConnection(c);
   try {
     const body = await c.req.json();
+    const { success, error } = updatePost.safeParse(body);
+    if (!success) {
+      return c.json({ status: false, msg: error.errors[0].message });
+    }
     const user = await prisma.user.findUnique({
       where: {
         id: userId,
-      
       },
     });
 
@@ -76,17 +84,17 @@ export const updateBlog = async (c: Context) => {
     }
 
     const update = await prisma.post.update({
-      where : {
-        id : id,
-        authorId : user.id
-      }, 
-      data : {
-        title : body.title || undefined,
-        content : body.content || undefined,
-        published : body.published || undefined
-      }
-    })
-    return c.json({status : true, msg:"Post updated Successfully"})
+      where: {
+        id: id,
+        authorId: user.id,
+      },
+      data: {
+        title: body.title || undefined,
+        content: body.content || undefined,
+        published: body.published || undefined,
+      },
+    });
+    return c.json({ status: true, msg: "Post updated Successfully" });
   } catch (error) {
     return c.json({ status: false, msg: "Please Login to update Details" });
   }
