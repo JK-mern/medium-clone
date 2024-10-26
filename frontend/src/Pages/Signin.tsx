@@ -1,9 +1,11 @@
-import React from 'react'
-
 function Signin() {
   return (
-    <div>Signin</div>
-  )
+    <div>
+      <main className="grid grid-cols-2 min-h-screen">
+       
+      </main>
+    </div>
+  );
 }
 
-export default Signin
+export default Signin;
