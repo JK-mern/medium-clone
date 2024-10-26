@@ -2,7 +2,11 @@ import React from 'react'
 
 function Blog() {
   return (
-    <div>Blog</div>
+    <div>
+        <main className='grid grid-cols-2 min-h-screen'>
+            <div></div>
+        </main>
+    </div>
   )
 }
 
