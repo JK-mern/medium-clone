@@ -5,5 +5,7 @@ export interface formError {
 
 export interface signUpResult  {
     status : boolean
-    jwt : string
+    jwt? : string
+    msg?:string
 }
+
