@@ -1,4 +1,4 @@
-import { Link,Navigate, useNavigate } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import { Label } from "./ui/label";
 import { Input } from "./ui/input";
 import { Button } from "./ui/button";
@@ -7,16 +7,18 @@ import { useState } from "react";
 import axios from "axios";
 import { formError, signUpResult } from "@/types/types";
 import { BACKEND_URL } from "@/config";
+import { ReloadIcon } from "@radix-ui/react-icons";
 
 function Auth() {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
+  const [loading, setLoading] = useState<boolean>(false);
   const [formdata, setFromData] = useState<signupInput>({
-    name: '',
+    name: "",
     email: "",
     password: "",
   });
 
-  console.log(formdata)
+  console.log(formdata);
 
   const [formError, setFormError] = useState<formError>({
     field: "",
@@ -25,11 +27,13 @@ function Auth() {
 
   const handleChange = (e: React.FormEvent<HTMLInputElement>): void => {
     setFromData({ ...formdata, [e.currentTarget.id]: e.currentTarget.value });
+    setFormError({ ...formError, field: "", message: "" });
   };
 
   const handleSubmit = async (): Promise<void> => {
-    const { success, error }  = signupInput.safeParse(formdata);
-    console.log(error)
+    setLoading(true);
+    const { success, error } = signupInput.safeParse(formdata);
+    console.log(error);
     if (error) {
       setFormError({
         ...formError,
@@ -38,22 +42,26 @@ function Auth() {
       });
     }
 
-    if(success)
-    {
+    if (success) {
       try {
-        const result = await axios.post(`${BACKEND_URL}/api/v1/auth/signup`,formdata)
-        const data:signUpResult = result.data
-        localStorage.setItem("token", data.jwt)
-        navigate('/signin')
+        const result = await axios.post(
+          `${BACKEND_URL}/api/v1/auth/signup`,
+          formdata
+        );
+        const data: signUpResult = result.data;
+        if (data.status) {
+          if (data.jwt) {
+            localStorage.setItem("token", data.jwt);
+            navigate("/signin");
+          }
+        }
       } catch (error) {
-          alert(error)
+        console.log(error);
       }
     }
 
-
-    // const result = await axios.post("");
+    setLoading(false);
   };
-
 
   return (
     <div className="flex justify-center items-center h-screen w-full ">
@@ -64,7 +72,7 @@ function Auth() {
           </h1>
           <p className="pt-2 text-center  text-sm  md:text-lg text-slate-500">
             Already Have an account?{" "}
-            <Link to={"/sigin"} className="underline">
+            <Link to={"/signin"} className="underline">
               Login
             </Link>
           </p>
@@ -97,7 +105,7 @@ function Auth() {
                 className="py-6  placeholder:text-lg"
                 onChange={handleChange}
               />
-              {formError.field === 'email' && (
+              {formError.field === "email" && (
                 <p className="text-sm font-medium leading-none text-red-600 pb-3">
                   {formError.message}
                 </p>
@@ -113,14 +121,19 @@ function Auth() {
                 className="py-6  placeholder:text-lg"
                 onChange={handleChange}
               />
-              {formError.field === 'password' && (
+              {formError.field === "password" && (
                 <p className="text-sm font-medium leading-none text-red-600 pb-3">
                   {formError.message}
                 </p>
               )}
             </div>
-            <Button onClick={handleSubmit} className="mt-4 py-6 ">
+            <Button
+              disabled={loading}
+              onClick={handleSubmit}
+              className="mt-4 py-6 "
+            >
               {" "}
+              {loading && <ReloadIcon className="mr-2 h-4 w-4 animate-spin" />}
               Sign Up
             </Button>
           </div>
