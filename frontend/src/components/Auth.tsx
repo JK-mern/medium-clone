@@ -52,7 +52,7 @@ function Auth() {
         if (data.status) {
           if (data.jwt) {
             localStorage.setItem("token", data.jwt);
-            navigate("/signin");
+            navigate("/blogs");
           }
         }
       } catch (error) {

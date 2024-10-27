@@ -4,7 +4,7 @@ function Blog() {
   return (
     <div>
         <main className='grid grid-cols-2 min-h-screen'>
-            <div></div>
+            <div>Hi i am blog</div>
         </main>
     </div>
   )

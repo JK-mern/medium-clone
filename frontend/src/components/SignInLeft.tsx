@@ -50,7 +50,7 @@ function SignInLeft() {
         if (data.status) {
           if (data.jwt) {
             localStorage.setItem("token", data.jwt);
-            navigate("/blog/5");
+            navigate("/blogs");
           }
         } else {
           console.log(data);
