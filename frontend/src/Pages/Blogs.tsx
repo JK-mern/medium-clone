@@ -1,9 +1,11 @@
-
+import BlogCard from "@/components/BlogCard";
 
 function Blogs() {
   return (
-    <div>Blogs</div>
-  )
+    <div>
+      <BlogCard />
+    </div>
+  );
 }
 
-export default Blogs
+export default Blogs;
