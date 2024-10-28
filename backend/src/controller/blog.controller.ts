@@ -23,6 +23,13 @@ export const getAllBlogs = async (c: Context) => {
   try {
     const result = await prisma.post.findMany({
       take: 5,
+      include: {
+        author: {
+          select: {
+            name: true,
+          },
+        },
+      },
     });
     return c.json({ status: true, posts: result });
   } catch (error) {
@@ -52,7 +59,7 @@ export const createNewBlog = async (c: Context) => {
         content: body.content,
         published: body.published,
         authorId: user.id,
-        publishedDate : getFormattedDate()
+        publishedDate: getFormattedDate(),
       },
     });
 
