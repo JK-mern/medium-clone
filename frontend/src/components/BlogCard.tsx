@@ -2,6 +2,7 @@ import { UserRound } from "lucide-react";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Avatar, AvatarFallback } from "@radix-ui/react-avatar";
 import { BlogCardProps } from "@/types/types";
+import { Link } from "react-router-dom";
 
 function BlogCard({ blogpost }: BlogCardProps) {
   return (
@@ -18,13 +19,17 @@ function BlogCard({ blogpost }: BlogCardProps) {
               </Avatar>
               <div className="">
                 <h4 className="text-md font-medium">{blogpost.author.name}</h4>
-                <p className="text-sm  text-muted-foreground">{blogpost.publishedDate}</p>
+                <p className="text-sm  text-muted-foreground">
+                  {blogpost.publishedDate}
+                </p>
               </div>
             </CardHeader>
             <CardContent className="">
-              <h2 className="text-xl mb-2  font-bold leading-tight cursor-pointer hover:underline ">
-                {blogpost.title}
-              </h2>
+              <Link to={`/blog/${blogpost.id}`}>
+                <h2 className="text-xl mb-2  font-bold leading-tight cursor-pointer hover:underline ">
+                  {blogpost.title}
+                </h2>
+              </Link>
               <p className="text-sm  text-muted-foreground space-y-3">
                 {blogpost.content}.
               </p>
