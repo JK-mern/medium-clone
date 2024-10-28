@@ -9,3 +9,22 @@ export interface signUpResult  {
     msg?:string
 }
 
+interface author {
+    name : string
+}
+
+export interface Blogposts {
+    id:string,
+    title : string,
+    content : string,
+    published : boolean , 
+    auhtorId : string,
+    publishedDate : string
+    author : author
+}
+
+
+export interface BlogCardProps {
+    blogpost : Blogposts
+}
+
