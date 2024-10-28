@@ -2,28 +2,24 @@ import React from "react";
 import {
   DropdownMenu,
   DropdownMenuContent,
-  DropdownMenuGroup,
   DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuPortal,
-  DropdownMenuSeparator,
-  DropdownMenuShortcut,
-  DropdownMenuSub,
-  DropdownMenuSubContent,
-  DropdownMenuSubTrigger,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback } from "@radix-ui/react-avatar";
 import { UserRound } from "lucide-react";
+import { LogOut } from "lucide-react";
+import { UserPen } from "lucide-react";
 function Navbar() {
   return (
-    <div className=" border-b border-gray-200  py-5 ">
+    <div className=" border-b border-gray-200  py-5   overscroll-auto   ">
       <div className="max-w-screen-2xl mx-auto  flex items-center justify-between px-30">
         <div>
           <h2 className="font-extrabold font-inter text-2xl">Medium</h2>
         </div>
-        <div>
+        <div className="flex justify-center  items-center gap-5">
+          {" "}
+          <Button className="bg-green-600">Publish </Button>
           <DropdownMenu>
             <DropdownMenuTrigger className="outline-none">
               {" "}
@@ -34,8 +30,13 @@ function Navbar() {
               </Avatar>{" "}
             </DropdownMenuTrigger>
             <DropdownMenuContent>
-              <DropdownMenuItem>Profile</DropdownMenuItem>
-              <DropdownMenuItem>Logout</DropdownMenuItem>
+              <DropdownMenuItem className="justify-between ">
+                Profile <UserPen className="text-blue-600" />{" "}
+              </DropdownMenuItem>
+              <DropdownMenuItem className="justify-between">
+                Logout
+                <LogOut className="text-red-600" />
+              </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
         </div>
