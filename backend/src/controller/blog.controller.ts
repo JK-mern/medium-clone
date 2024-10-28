@@ -1,6 +1,7 @@
 import { Context } from "hono";
 import { prismaConnection } from "../../utils/prismaClient";
 import { createPost, updatePost } from "@jayakrishnan_s/medium-common-app";
+import { getFormattedDate } from "../../utils/getDate";
 
 export const getBlog = async (c: Context) => {
   const prisma = prismaConnection(c);
@@ -51,6 +52,7 @@ export const createNewBlog = async (c: Context) => {
         content: body.content,
         published: body.published,
         authorId: user.id,
+        publishedDate : getFormattedDate()
       },
     });
 
