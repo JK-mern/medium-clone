@@ -28,3 +28,15 @@ export interface BlogCardProps {
     blogpost : Blogposts
 }
 
+
+interface createBlog {
+    title : string,
+    content : string
+}
+
+export interface User {
+    id : string,
+    name : string,
+    email:string,
+    posts : Blogposts[]
+}
