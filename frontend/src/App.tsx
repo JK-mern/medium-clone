@@ -6,7 +6,15 @@ import Blogs from "./Pages/Blogs";
 import PublishBlog from "./Pages/PublishBlog";
 import Profile from "./Pages/Profile";
 import EditBlog from "./Pages/EditBlog";
+import { useEffect, useState } from "react";
 function App() {
+  const [token, setToken] = useState<string>("");
+  useEffect(() => {
+    const jwt = localStorage.getItem("jwt");
+    if (jwt) {
+      setToken(jwt);
+    }
+  }, []);
   return (
     <div>
       <BrowserRouter>
@@ -20,10 +28,10 @@ function App() {
           <Route path="/blog/:id" element={<Blog />}>
             {" "}
           </Route>
-          <Route path="/blogs" element= {<Blogs />}></Route>
-          <Route path="/publish"  element= {<PublishBlog/>}></Route>
-          <Route path="/profile" element = {<Profile />}></Route>
-          <Route path="/edit/:id" element ={<EditBlog />}></Route>
+          <Route path="/blogs" element={<Blogs />}></Route>
+          <Route path="/publish" element={<PublishBlog />}></Route>
+          <Route path="/profile" element={<Profile />}></Route>
+          <Route path="/edit/:id" element={<EditBlog />}></Route>
         </Routes>
       </BrowserRouter>
     </div>
