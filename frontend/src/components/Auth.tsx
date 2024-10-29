@@ -33,7 +33,6 @@ function Auth() {
   const handleSubmit = async (): Promise<void> => {
     setLoading(true);
     const { success, error } = signupInput.safeParse(formdata);
-    console.log(error);
     if (error) {
       setFormError({
         ...formError,

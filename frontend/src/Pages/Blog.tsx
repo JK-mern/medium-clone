@@ -9,7 +9,7 @@ function Blog() {
       <main className="">
         <Navbar />
         {blog ? (
-          <div className="flex flex-col max-w-screen-xl  mx-auto space-y-1  mt-8">
+          <div className="flex flex-col max-w-screen-xl  mx-auto space-y-1  mt-8 mb-20" >
             <h1 className="  font-bold leading-tight text-3xl  ">
               {blog?.title}
             </h1>

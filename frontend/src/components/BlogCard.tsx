@@ -30,7 +30,7 @@ function BlogCard({ blogpost }: BlogCardProps) {
                   {blogpost.title}
                 </h2>
               </Link>
-              <p className="text-sm  text-muted-foreground space-y-3">
+              <p className="text-sm  text-muted-foreground space-y-3 line-clamp-3">
                 {blogpost.content}.
               </p>
             </CardContent>
