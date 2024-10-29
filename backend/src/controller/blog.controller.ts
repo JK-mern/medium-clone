@@ -66,7 +66,7 @@ export const createNewBlog = async (c: Context) => {
     if (!result)
       return c.json({ status: false, msg: "Unauthorized user" }, 403);
 
-    return c.json({ status: true, msg: "Post created successfully" });
+    return c.json({ status: true, msg: "Post created successfully",id : result.id});
   } catch (error) {
     return c.json({ status: false, msg: "internal Server error" }, 500);
   }
@@ -103,7 +103,7 @@ export const updateBlog = async (c: Context) => {
         published: body.published || undefined,
       },
     });
-    return c.json({ status: true, msg: "Post updated Successfully" });
+    return c.json({ status: true, msg: "Post updated Successfully", id : update.id});
   } catch (error) {
     return c.json({ status: false, msg: "Please Login to update Details" });
   }
