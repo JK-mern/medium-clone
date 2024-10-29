@@ -10,16 +10,28 @@ import { Avatar, AvatarFallback } from "@radix-ui/react-avatar";
 import { UserRound } from "lucide-react";
 import { LogOut } from "lucide-react";
 import { UserPen } from "lucide-react";
+import { Link, useNavigate } from "react-router-dom";
 function Navbar() {
+  const navigate = useNavigate();
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    navigate("/signin");
+  };
   return (
     <div className=" border-b border-gray-200  py-5   overscroll-auto   ">
       <div className="max-w-screen-2xl mx-auto  flex items-center justify-between px-30">
         <div>
-          <h2 className="font-extrabold font-inter text-2xl">Medium</h2>
+          <Link to={"/blogs"}>
+            <h2 className="font-extrabold font-inter text-2xl cursor-pointer">
+              Medium
+            </h2>
+          </Link>
         </div>
         <div className="flex justify-center  items-center gap-5">
           {" "}
-          <Button className="bg-green-600">Publish </Button>
+          <Link to={"/publish"}>
+            <Button className="bg-green-600">New Blog </Button>
+          </Link>
           <DropdownMenu>
             <DropdownMenuTrigger className="outline-none">
               {" "}
@@ -31,9 +43,14 @@ function Navbar() {
             </DropdownMenuTrigger>
             <DropdownMenuContent>
               <DropdownMenuItem className="justify-between ">
-                Profile <UserPen className="text-blue-600" />{" "}
+                <Link to={'/profile'} className="flex  flex-row gap-10 ">
+                  Profile <UserPen className="text-blue-600" />{" "}
+                </Link>
               </DropdownMenuItem>
-              <DropdownMenuItem className="justify-between">
+              <DropdownMenuItem
+                className="justify-between"
+                onClick={handleLogout}
+              >
                 Logout
                 <LogOut className="text-red-600" />
               </DropdownMenuItem>
