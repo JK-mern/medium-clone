@@ -7,7 +7,6 @@ import { useParams } from "react-router-dom"
 export const useFetchBlogDetails = () =>{
     let {id} = useParams()
     const [data, setData] = useState<Blogposts>() 
-    console.log(id)
     useEffect(() => {
         async function getBlogDetails()
         {

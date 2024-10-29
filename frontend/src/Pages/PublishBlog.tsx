@@ -11,7 +11,7 @@ import { useNavigate } from "react-router-dom";
 
 function PublishBlog() {
   const { toast } = useToast();
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const [formData, setFormData] = useState<createPost>({
     title: "",
     content: "",
@@ -20,6 +20,9 @@ function PublishBlog() {
   const handleChange = (
     e: React.FormEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
+    const textarea = e.currentTarget;
+    textarea.style.height = "auto"; // Reset height to auto
+    textarea.style.height = `${textarea.scrollHeight}px`;
     setFormData({ ...formData, [e.currentTarget.id]: e.currentTarget.value });
   };
 
@@ -46,9 +49,8 @@ function PublishBlog() {
             },
           }
         );
-        navigate(`/blogs`)
+        navigate(`/blogs`);
       }
-
     } catch (error) {}
   };
   return (
@@ -70,7 +72,7 @@ function PublishBlog() {
             id="content"
             onChange={handleChange}
             value={formData.content}
-            className="w-full min-h-screen p-4 text-xl border-none resize-none focus:outline-none focus:ring-0"
+            className="w-full min-h-96 p-4 text-xl border-none resize-none focus:outline-none focus:ring-0"
           />
         </div>
         <div className="mt-4 ml-10">

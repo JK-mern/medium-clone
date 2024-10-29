@@ -40,3 +40,5 @@ export interface User {
     email:string,
     posts : Blogposts[]
 }
+
+
