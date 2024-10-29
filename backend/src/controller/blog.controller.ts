@@ -108,3 +108,30 @@ export const updateBlog = async (c: Context) => {
     return c.json({ status: false, msg: "Please Login to update Details" });
   }
 };
+
+export const deleteBlog = async (c: Context) => {
+  try {
+    const userId = c.get("userId");
+    const deleteId = c.req.param("id")
+    const prisma = prismaConnection(c);
+    const user = await prisma.user.findUnique({
+      where: {
+        id: userId,
+      },
+    });
+
+    if (!user) {
+      return c.json({ status: false, msg: "Please Login to update Details" });
+    }
+
+    const deleted = await prisma.post.delete({
+      where :{
+        id : deleteId
+      }
+    })
+
+    return c.json({status : true , id : deleted.id})
+  } catch (error) {
+    return c.json({ status: false, msg: "Please Login to update Details" });
+  }
+};
