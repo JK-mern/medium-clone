@@ -64,7 +64,7 @@ function SignInLeft() {
             variant: "destructive",
             title: error.response.data.msg,
             duration: 3000,
-          });
+          }); 
         } else {
           console.error("Unexpected error:", error);
         }

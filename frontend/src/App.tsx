@@ -5,6 +5,7 @@ import Blog from "./Pages/Blog";
 import Blogs from "./Pages/Blogs";
 import PublishBlog from "./Pages/PublishBlog";
 import Profile from "./Pages/Profile";
+import EditBlog from "./Pages/EditBlog";
 function App() {
   return (
     <div>
@@ -22,6 +23,7 @@ function App() {
           <Route path="/blogs" element= {<Blogs />}></Route>
           <Route path="/publish"  element= {<PublishBlog/>}></Route>
           <Route path="/profile" element = {<Profile />}></Route>
+          <Route path="/edit/:id" element ={<EditBlog />}></Route>
         </Routes>
       </BrowserRouter>
     </div>
