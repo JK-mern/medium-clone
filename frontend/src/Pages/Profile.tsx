@@ -1,10 +1,8 @@
+import Loader from "@/components/Loader";
 import Navbar from "@/components/Navbar";
 import ProfileCard from "@/components/ProfileCard";
 import UserBlogs from "@/components/UserBlogs";
 import { fetchUserDetails } from "@/hooks/fetchUserDetails";
-// import { Profile } from '@/types/types'
-import React from "react";
-
 function Profile() {
   const userData = fetchUserDetails();
   console.log(userData);
@@ -12,13 +10,16 @@ function Profile() {
   return (
     <div>
       <Navbar />
-      {userData && (
+
+      {userData ? (
         <div className="flex flex-col justify-center items-center h-screen ">
           <div className="max-w-screen-md w-full ">
             <ProfileCard name={userData?.name} email={userData?.email} />
             <UserBlogs blogs={userData.posts} />
           </div>
         </div>
+      ) : (
+        <Loader />
       )}
     </div>
   );
