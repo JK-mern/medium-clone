@@ -32,7 +32,7 @@ export const signup = async (c: Context) => {
     if (result) {
       const token = await sign({ id: result.id }, c.env.SECRET_KEY);
       c.status(201);
-      return c.json({ status: true, jwt: token });
+      return c.json({ status: true, jwt: token, id:result.id});
     }
   } catch (error) {
     c.status(403);
@@ -65,7 +65,7 @@ export const signin = async (c: Context) => {
 
     const token = await sign({ id: user.id }, c.env.SECRET_KEY);
     c.status(201);
-    return c.json({ status: true, jwt: token });
+    return c.json({ status: true, jwt: token, id:user.id });
   } catch (error) {
     c.status(500);
     return c.json({ status: false, msg: "internal server error" });
