@@ -49,7 +49,7 @@ function PublishBlog() {
             },
           }
         );
-        navigate(`/blogs`);
+        navigate(`/`);
       }
     } catch (error) {}
   };

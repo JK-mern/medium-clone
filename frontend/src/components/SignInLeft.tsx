@@ -11,10 +11,12 @@ import { Toaster } from "./ui/toaster";
 import { useToast } from "@/hooks/use-toast";
 import { cn } from "@/lib/utils";
 import { ReloadIcon } from "@radix-ui/react-icons";
+import useUserStore from "@/state/store";
 function SignInLeft() {
   const navigate = useNavigate();
   const { toast } = useToast();
   const [loading, setLoading] = useState<boolean>(false);
+  const setUser = useUserStore((state) => state.setUser);
   const [formdata, setFromData] = useState<signinInput>({
     email: "",
     password: "",
@@ -50,7 +52,11 @@ function SignInLeft() {
         if (data.status) {
           if (data.jwt) {
             localStorage.setItem("token", data.jwt);
-            navigate("/blogs");
+            if (data.id) {
+              setUser(data.id);
+            }
+
+            navigate("/");
           }
         } else {
           console.log(data);
@@ -64,7 +70,7 @@ function SignInLeft() {
             variant: "destructive",
             title: error.response.data.msg,
             duration: 3000,
-          }); 
+          });
         } else {
           console.error("Unexpected error:", error);
         }
@@ -128,7 +134,7 @@ function SignInLeft() {
             >
               {" "}
               {loading && <ReloadIcon className="mr-2 h-4 w-4 animate-spin" />}
-              Sign Up
+              Sign in
             </Button>
           </div>
         </div>

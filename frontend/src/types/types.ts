@@ -7,6 +7,7 @@ export interface signUpResult  {
     status : boolean
     jwt? : string
     msg?:string
+    id? :string
 }
 
 interface author {
