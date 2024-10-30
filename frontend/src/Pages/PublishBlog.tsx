@@ -49,7 +49,11 @@ function PublishBlog() {
             },
           }
         );
-        navigate(`/`);
+        if(res.data.status)
+        {
+          navigate(`/blog/${res.data.id}`)
+        }
+     
       }
     } catch (error) {}
   };

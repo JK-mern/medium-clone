@@ -3,7 +3,6 @@ import Loader from "@/components/Loader";
 import Navbar from "@/components/Navbar";
 import useFetchAllBlogs from "@/hooks/useFetchAllBlogs";
 import { Blogposts } from "@/types/types";
-import { useState } from "react";
 
 function Blogs() {
   const blogposts : Blogposts[]  = useFetchAllBlogs();

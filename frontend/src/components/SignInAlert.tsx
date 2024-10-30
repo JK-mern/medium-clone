@@ -1,4 +1,3 @@
-import React, { useState } from "react";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -11,6 +10,7 @@ import {
 } from "@/components/ui/alert-dialog";
 
 import { HomeIcon, LogIn } from "lucide-react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 function SignInAlert() {

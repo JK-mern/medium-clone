@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route, useNavigate } from "react-router-dom";
+import { BrowserRouter, Routes, Route} from "react-router-dom";
 import Signin from "./Pages/Signin";
 import Signup from "./Pages/Signup";
 import Blog from "./Pages/Blog";
@@ -6,7 +6,7 @@ import Blogs from "./Pages/Blogs";
 import PublishBlog from "./Pages/PublishBlog";
 import Profile from "./Pages/Profile";
 import EditBlog from "./Pages/EditBlog";
-import { useEffect } from "react";
+
 import useUserStore from "./state/store";
 import SignInAlert from "./components/SignInAlert";
 function App() {

@@ -30,10 +30,6 @@ export interface BlogCardProps {
 }
 
 
-interface createBlog {
-    title : string,
-    content : string
-}
 
 export interface User {
     id : string,
