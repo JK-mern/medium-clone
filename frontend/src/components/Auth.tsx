@@ -8,9 +8,11 @@ import axios from "axios";
 import { formError, signUpResult } from "@/types/types";
 import { BACKEND_URL } from "@/config";
 import { ReloadIcon } from "@radix-ui/react-icons";
+import useUserStore from "@/state/store";
 
 function Auth() {
   const navigate = useNavigate();
+  const setUser = useUserStore((state) => state.setUser);
   const [loading, setLoading] = useState<boolean>(false);
   const [formdata, setFromData] = useState<signupInput>({
     name: "",
@@ -51,7 +53,10 @@ function Auth() {
         if (data.status) {
           if (data.jwt) {
             localStorage.setItem("token", data.jwt);
-            navigate("/blogs");
+            if (data.id) {
+              setUser(data.id);
+            }
+            navigate("/");
           }
         }
       } catch (error) {
