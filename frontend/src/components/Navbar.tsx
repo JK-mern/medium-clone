@@ -20,7 +20,7 @@ function Navbar() {
     navigate("/signin");
   };
   return (
-    <div className=" border-b border-gray-200  py-5   overscroll-auto   ">
+    <div className=" border-b border-gray-200  md:py-5   overscroll-auto  p-3 ">
       <div className="max-w-screen-2xl mx-auto  flex items-center justify-between px-30">
         <div>
           <Link to={"/"}>

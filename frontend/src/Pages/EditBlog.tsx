@@ -65,7 +65,7 @@ function EditBlog() {
             id="title"
             value={formData.title}
             onChange={handleChange}
-            className="w-full pl-12 pr-4 py-2 text-4xl font-bold border-none focus:outline-none focus:ring-0 overflow-auto"
+            className="w-full pl-12 pr-4 py-2  text-2xl md:text-4xl font-bold border-none focus:outline-none focus:ring-0 overflow-auto"
           />
           <div className="mt-4 ml-8">
             <textarea
@@ -73,7 +73,7 @@ function EditBlog() {
               id="content"
               onChange={handleChange}
               value={formData.content}
-              className="w-full min-h-[96px] p-4 text-xl border-none overflow-hidden resize-none focus:outline-none focus:ring-0"
+              className="w-full min-h-[96px] p-4   md:text-xl border-none overflow-hidden resize-none focus:outline-none focus:ring-0"
             />
           </div>
           <div className="mt-4 ml-10">

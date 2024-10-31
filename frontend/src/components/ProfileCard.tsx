@@ -1,3 +1,4 @@
+import Navbar from "./Navbar";
 import { Card, CardHeader, CardTitle } from "./ui/card";
 
 interface ProfileCardProps {
@@ -8,6 +9,7 @@ interface ProfileCardProps {
 function ProfileCard({ name, email }: ProfileCardProps) {
   return (
     <div className="">
+  
       <Card className="">
         <CardHeader>
           <CardTitle className="text-2xl font-bold">{name}</CardTitle>

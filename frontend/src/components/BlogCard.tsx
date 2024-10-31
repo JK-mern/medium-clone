@@ -8,7 +8,7 @@ function BlogCard({ blogpost }: BlogCardProps) {
   return (
     <div>
       <main>
-        <div className="flex flex-col max-w-screen-md  mx-auto  mt-5 space-y-8  ">
+        <div className="flex flex-col max-w-screen-md  mx-auto  mt-5 space-y-8  p-3 md:p-0 ">
           <Card className="border border-gray-200 shadow-none ">
             <CardHeader className="flex  flex-row items-center gap-3 space-y-0">
               <Avatar className="bg-gray-50 rounded-full p-3  ">
